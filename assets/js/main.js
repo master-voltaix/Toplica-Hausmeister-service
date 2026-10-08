@@ -148,3 +148,24 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 }
+
+// ---- Wisch-Reihen auf dem Handy: Punkte als Positionsanzeige
+document.querySelectorAll('.swipe').forEach(row => {
+  const dots = document.createElement('div');
+  dots.className = 'dots';
+  dots.setAttribute('aria-hidden', 'true');
+  dots.innerHTML = [...row.children].map((_, i) => `<i${i ? '' : ' class="on"'}></i>`).join('');
+  row.after(dots);
+  let waiting = false;
+  row.addEventListener('scroll', () => {
+    if (waiting) return;
+    waiting = true;
+    requestAnimationFrame(() => {
+      waiting = false;
+      const step = row.children[0].offsetWidth + parseFloat(getComputedStyle(row).columnGap || 0);
+      const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+      const index = atEnd ? row.children.length - 1 : Math.round(row.scrollLeft / step);
+      [...dots.children].forEach((d, i) => d.classList.toggle('on', i === index));
+    });
+  }, { passive: true });
+});
