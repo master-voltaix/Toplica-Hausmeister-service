@@ -55,13 +55,40 @@ document.querySelectorAll('.service .btn, [data-service]').forEach(btn => {
   });
 });
 
-// Formulare (Demo: kein Versand, nur Bestätigung + Tracking-Ereignis)
-document.querySelectorAll('form[data-demo]').forEach(form => {
-  form.addEventListener('submit', e => {
+// Formulare: Anfrage an /api/anfrage senden (verschickt die E-Mail), danach Bestätigung + Tracking
+document.querySelectorAll('form[data-lead]').forEach(form => {
+  const wrap = form.closest('[data-form-wrap]');
+  const button = form.querySelector('button[type="submit"]');
+  const error = document.createElement('div');
+  error.className = 'form-error';
+  error.setAttribute('role', 'alert');
+  error.innerHTML = 'Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie uns an: <a href="tel:+4917680790200">0176 80790200</a>';
+  form.after(error);
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    track('lead_form_submit', { form: form.dataset.formName });
-    form.closest('[data-form-wrap]').classList.add('sent');
-    form.reset();
+    if (button.disabled) return;
+    const data = Object.fromEntries(new FormData(form));
+    data.formular = form.dataset.formName;
+    button.disabled = true;
+    wrap.classList.remove('failed');
+    wrap.classList.add('sending');
+    try {
+      const response = await fetch('/api/anfrage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error(response.status);
+      track('lead_form_submit', { form: form.dataset.formName });
+      wrap.classList.add('sent');
+      form.reset();
+    } catch {
+      wrap.classList.add('failed');
+    } finally {
+      wrap.classList.remove('sending');
+      button.disabled = false;
+    }
   });
 });
 

@@ -743,3 +743,10 @@ html { overflow-x: clip; }
 @media (max-width: 640px) { .logo img { height: 34px; } .nav .container { height: 62px; } .footer .logo img { height: 44px; } }
 body { overflow-x: clip; }
 .nav { position: sticky; top: 0; z-index: 50; }
+
+/* Formular-Zustände */
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-error { display: none; margin-top: 16px; background: #fff; border-left: 4px solid #c0392b; border-radius: 10px; padding: 14px 18px; color: #8a241a; font-weight: 500; font-size: .9rem; text-align: left; }
+.form-error a { text-decoration: underline; white-space: nowrap; }
+[data-form-wrap].failed .form-error { display: block; }
+[data-form-wrap].sending button[type="submit"] { opacity: .6; cursor: progress; }

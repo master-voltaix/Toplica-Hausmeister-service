@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=10">
+<link rel="stylesheet" href="assets/css/style.css?v=11">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 </head>
@@ -108,7 +108,7 @@
     <div class="hero-form reveal" style="--d:.15s" data-form-wrap>
       <h2>Kostenloses Angebot anfordern</h2>
       <p>In 30 Sekunden ausgefüllt – wir melden uns innerhalb eines Werktags.</p>
-      <form data-demo data-form-name="hero">
+      <form data-lead data-form-name="hero"><input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field"><label for="h-name">Name *</label><input id="h-name" name="name" required autocomplete="name" placeholder="Max Mustermann"></div>
         <div class="field"><label for="h-tel">Telefon *</label><input id="h-tel" name="telefon" type="tel" required autocomplete="tel" placeholder="0171 2345678"></div>
         <div class="field"><label for="h-leistung">Was können wir für Sie tun?</label>
@@ -511,7 +511,7 @@
     <div class="form reveal" id="angebot" style="--d:.15s" data-form-wrap>
       <h3>Kostenloses Angebot anfordern</h3>
       <p>Wir melden uns innerhalb eines Werktags bei Ihnen.</p>
-      <form class="form-grid" data-demo data-form-name="kontakt">
+      <form class="form-grid" data-lead data-form-name="kontakt"><input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field"><label for="f-name">Name *</label><input id="f-name" name="name" required autocomplete="name" placeholder="Max Mustermann"></div>
         <div class="field"><label for="f-tel">Telefon *</label><input id="f-tel" name="telefon" type="tel" required autocomplete="tel" placeholder="0171 2345678"></div>
         <div class="field only-d"><label for="f-mail">E-Mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de"></div>
@@ -590,7 +590,7 @@
     <div class="callback reveal" data-form-wrap>
       <h2>Lieber kurz telefonieren?</h2>
       <p>Hinterlassen Sie Ihre Nummer – wir rufen Sie noch am selben Werktag zurück.</p>
-      <form data-demo data-form-name="rueckruf">
+      <form data-lead data-form-name="rueckruf"><input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="tel" name="rueckruf" required placeholder="Ihre Telefonnummer" aria-label="Ihre Telefonnummer">
         <button class="btn" type="submit">Rückruf anfordern <span class="ico"><svg class="i"><use href="#arrow"/></svg></span></button>
       </form>
@@ -655,6 +655,6 @@
   <a href="#angebot" class="offer"><svg class="i"><use href="#mail"/></svg> Angebot anfordern</a>
 </div>
 
-<script src="assets/js/main.js?v=10"></script>
+<script src="assets/js/main.js?v=11"></script>
 </body>
 </html>
